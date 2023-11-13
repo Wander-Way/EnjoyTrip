@@ -17,4 +17,10 @@ public class Tag {
 
     private String text;
 
+    //연관관계 편의 메소드
+//    public void setTagToPlan(Plan plan){
+//        this.plan = plan;
+//        plan.getTags().add(this);
+//    }
+
 }

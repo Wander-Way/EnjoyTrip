@@ -1,14 +1,15 @@
 package com.ssafy.wanderway.domain;
 
 
+import com.ssafy.wanderway.dto.LocationDto;
+import com.ssafy.wanderway.dto.PlanFormDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -24,6 +25,7 @@ public class Plan {
 
     //공유여부 : true일때 공개
     @Column(name="is_public")
+    @ColumnDefault("false")
     private boolean isPublic;
 
     @Embedded
@@ -43,7 +45,22 @@ public class Plan {
 
     //일별 루트
     @OneToMany(mappedBy = "plan",fetch = FetchType.LAZY)
-    private List<Route> routeDetails = new ArrayList<>();
+    private List<Route> routes = new ArrayList<>();
+
+    @Builder
+    Plan(PlanFormDto dto, Member member){
+        this.title = dto.getTitle();
+        this.description = dto.getDescription();
+        this.thumbnail = null;
+        this.location = new Address(dto.getLocation());
+        this.member = member;
+        //List<String> tags;
+
+        //태그는 tag테이블에 존재하면 그 id를, 없으면 저장후의 id를 꺼내서 tag_to_plan에 plan과 함께 매칭한다.
+
+        //Map<Integer, List<LocationDto>> plan;
+
+    }
 
 
 }

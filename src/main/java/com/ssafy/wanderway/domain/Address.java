@@ -1,11 +1,12 @@
 package com.ssafy.wanderway.domain;
 
+import com.ssafy.wanderway.dto.LocationDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Table;
 
 @Embeddable
 @Getter
@@ -26,4 +27,15 @@ public class Address {
     //상세주소
     @Column(name="detail_Address")
     private String detailAddress;
+
+    @Builder
+    Address(LocationDto dto){
+        this.name = dto.getName();
+        this.city = dto.getCity();
+        this.district = dto.getDistrict();
+        this.town = dto.getTown();
+        this.latitude = dto.getLatitude();
+        this.longitude = dto.getLongitude();
+        this.detailAddress = dto.getDetailAddress();
+    }
 }
