@@ -76,4 +76,10 @@ public class Plan {
     }
 
 
+    //==연관관계 편의메소드 이용
+    public void likePlan(Plan plan, Member member) {
+        Like newLike = new Like();
+        newLike.likePlan(this, member);
+        likes.add(newLike);
+    }
 }

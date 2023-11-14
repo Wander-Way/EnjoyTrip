@@ -22,7 +22,7 @@ public class RouteDto {
     private boolean isLike;
 
     @Builder
-    public RouteDto(Plan plan) {
+    public RouteDto(Plan plan, boolean isLike) {
         this.location = plan.getLocation().getName();
         this.period = String.valueOf(plan.getRoutes().get(plan.getRoutes().size()-1).getDay());
         this.thumbnail = plan.getThumbnail();
@@ -31,6 +31,6 @@ public class RouteDto {
 
         this.tag = new ArrayList<>();
         for(TagToPlan ttp : plan.getTags()) tag.add(ttp.getTag().getText());
-        this.isLike = plan.isPublic();
+        this.isLike = isLike;
     }
 }

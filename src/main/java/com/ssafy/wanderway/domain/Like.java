@@ -1,5 +1,6 @@
 package com.ssafy.wanderway.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,4 +32,11 @@ public class Like {
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;
+    
+    //연관관계 편의 메소드
+    public void likePlan(Plan plan, Member member){
+        this.plan = plan;
+        this.member = member;
+        this.type = LikeType.Plan;
+    }
 }
