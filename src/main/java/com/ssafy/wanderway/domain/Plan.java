@@ -32,33 +32,41 @@ public class Plan {
     private Address location;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
     //태그리스트
-    @OneToMany(mappedBy = "plan")
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TagToPlan> tags = new HashSet<>();
 
     //좋아요리스트
-    @OneToMany(mappedBy = "plan",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "plan",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likes = new ArrayList<>();
 
     //일별 루트
-    @OneToMany(mappedBy = "plan",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "plan",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Route> routes = new ArrayList<>();
 
     @Builder
-    Plan(PlanFormDto dto, Member member){
-        this.title = dto.getTitle();
-        this.description = dto.getDescription();
+    Plan(PlanFormDto planFormDto, Member member, List<Tag> savedTags){
+        this.title = planFormDto.getTitle();
+        this.description = planFormDto.getDescription();
         this.thumbnail = null;
-        this.location = new Address(dto.getLocation());
+        this.location = Address.builder()
+                        .locationDto(planFormDto.getLocation())
+                        .build();
         this.member = member;
-        //List<String> tags;
-
-        //태그는 tag테이블에 존재하면 그 id를, 없으면 저장후의 id를 꺼내서 tag_to_plan에 plan과 함께 매칭한다.
-
-        //Map<Integer, List<LocationDto>> plan;
+        for(Tag tag : savedTags){
+            TagToPlan tagToPlan = new TagToPlan();
+            tagToPlan.setTagToPlan(this, tag);
+            this.tags.add(tagToPlan);
+        }
+        // Map<Integer, List<LocationDto>> plan의 Integer = DAY값
+        for(Integer day : planFormDto.getPlan().keySet()){
+            Route newRoute = new Route();
+            newRoute.setPlanAndDayAndRd(this, day, planFormDto.getPlan().get(day));
+            routes.add(newRoute);
+        }
 
     }
 

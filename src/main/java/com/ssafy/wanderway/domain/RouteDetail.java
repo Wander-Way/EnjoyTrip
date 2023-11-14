@@ -1,5 +1,6 @@
 package com.ssafy.wanderway.domain;
 
+import com.ssafy.wanderway.dto.LocationDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,7 @@ public class RouteDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="place_name")
+    @Column(name="place_name") //address의 name이랑 겹치지않나,,, 일단 null로두자
     private String placeName;
 
     @Embedded
@@ -26,5 +27,14 @@ public class RouteDetail {
 
     //여행 순서
     private int sort;
+
+    //연관관계 편의 메소드
+    public void setAll(Route route, LocationDto dto, int sort){
+        this.route = route;
+        this.sort = sort;
+        this.address = Address.builder()
+                        .locationDto(dto)
+                        .build();
+    }
 
 }

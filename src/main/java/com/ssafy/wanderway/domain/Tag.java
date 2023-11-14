@@ -1,5 +1,6 @@
 package com.ssafy.wanderway.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,12 +16,12 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String text;
 
-    //연관관계 편의 메소드
-//    public void setTagToPlan(Plan plan){
-//        this.plan = plan;
-//        plan.getTags().add(this);
-//    }
+    @Builder
+    Tag(String text){
+        this.text = text;
+    }
 
 }

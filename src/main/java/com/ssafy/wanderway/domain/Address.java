@@ -21,21 +21,23 @@ public class Address {
     private String town; //읍면동
 
     //좌표
-    private Long latitude; //위도
-    private Long longitude; //경도
+    @Column(name = "latitude", columnDefinition = "FLOAT")
+    private Float latitude; //위도
+    @Column(name = "longitude", columnDefinition = "FLOAT")
+    private Float longitude; //경도
 
     //상세주소
     @Column(name="detail_Address")
     private String detailAddress;
 
     @Builder
-    Address(LocationDto dto){
-        this.name = dto.getName();
-        this.city = dto.getCity();
-        this.district = dto.getDistrict();
-        this.town = dto.getTown();
-        this.latitude = dto.getLatitude();
-        this.longitude = dto.getLongitude();
-        this.detailAddress = dto.getDetailAddress();
+    Address(LocationDto locationDto){
+        this.name = locationDto.getName();
+        this.city = locationDto.getCity();
+        this.district = locationDto.getDistrict();
+        this.town = locationDto.getTown();
+        this.latitude = locationDto.getLatitude();
+        this.longitude = locationDto.getLongitude();
+        this.detailAddress = locationDto.getDetailAddress();
     }
 }

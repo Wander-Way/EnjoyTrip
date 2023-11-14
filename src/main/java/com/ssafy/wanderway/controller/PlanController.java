@@ -6,6 +6,7 @@ import com.ssafy.wanderway.dto.PlanFormDto;
 import com.ssafy.wanderway.repository.MemberRepository;
 import com.ssafy.wanderway.service.PlanService;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,8 @@ public class PlanController {
      */
     @PostMapping("/plan")
     public ResponseEntity<Long> saveNewPlan(@RequestBody PlanFormDto dto){
-        Member member = memberRepository.findById(1L).orElse((null));
+        Member member = memberRepository.findById(3L).orElse((null));
+        if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         return new ResponseEntity<>(planService.saveNewPlan(dto,member), HttpStatus.OK);
     }
 

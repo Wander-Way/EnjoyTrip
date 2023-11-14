@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "tag_to_plan")
 public class TagToPlan {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -18,8 +18,9 @@ public class TagToPlan {
     private Tag tag;
 
     //연관관계 편의 메소드
-    public void setPlan(Plan plan){
+    public void setTagToPlan(Plan plan, Tag tag){
         this.plan = plan;
+        this.tag = tag;
         plan.getTags().add(this);
     }
 
