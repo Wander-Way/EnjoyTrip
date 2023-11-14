@@ -1,9 +1,13 @@
 package com.ssafy.wanderway.domain;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tag_to_plan")
+@Getter @ToString
 public class TagToPlan {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,8 @@
 package com.ssafy.wanderway.dto;
 
 
+import com.ssafy.wanderway.domain.RouteDetail;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -23,6 +25,15 @@ public class LocationDto {
     private Float latitude; //위도
     private Float longitude; //경도
 
-
+    @Builder
+    public LocationDto(RouteDetail routeDetail){
+        this.name = routeDetail.getAddress().getCity();
+        this.city = routeDetail.getAddress().getCity();
+        this.district = routeDetail.getAddress().getDistrict();
+        this.town = routeDetail.getAddress().getTown();
+        this.detailAddress = routeDetail.getAddress().getDetailAddress();
+        this.latitude = routeDetail.getAddress().getLatitude();
+        this.longitude = routeDetail.getAddress().getLongitude();
+    }
 
 }

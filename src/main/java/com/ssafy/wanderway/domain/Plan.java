@@ -70,5 +70,10 @@ public class Plan {
 
     }
 
+    //공개여부를 수정하는 메소드
+    public void modifyIspublic(){
+        this.isPublic = !this.isPublic;
+    }
+
 
 }
