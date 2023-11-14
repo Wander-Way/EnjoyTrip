@@ -1,5 +1,6 @@
 package com.ssafy.wanderway.domain;
 
+import com.ssafy.wanderway.dto.HotplaceDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,9 @@ public class Attach {
     @ManyToOne
     @JoinColumn(name = "hotplace_id")
     private Hotplace hotplace;
+
+    public Attach(Hotplace h, HotplaceDto dto){
+        this.hotplace = h;
+        //this.
+    }
 }
