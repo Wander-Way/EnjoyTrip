@@ -20,6 +20,7 @@ public class Member {
     private String email;
     private String password;
     private String nickname;
+    private String profile;
 
     //작성한 여행플랜
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
@@ -38,6 +39,7 @@ public class Member {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
+        this.profile = "/default.img";
     }
 
 }

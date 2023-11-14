@@ -15,7 +15,7 @@ public class Like {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LikeType type; //REPLY 또는 PLAN에 대한 좋아요 구분
+    private LikeType type; //REPLY 또는 ROUTE에 대한 좋아요 구분 : ENUM으로
 
     //좋아요 누른사람
     @ManyToOne
