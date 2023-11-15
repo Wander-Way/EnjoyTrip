@@ -3,7 +3,10 @@ package com.ssafy.wanderway.controller;
 import com.ssafy.wanderway.domain.Address;
 import com.ssafy.wanderway.domain.Member;
 import com.ssafy.wanderway.domain.Plan;
+import com.ssafy.wanderway.domain.RouteDetail;
+import com.ssafy.wanderway.dto.RouteDetailDto;
 import com.ssafy.wanderway.dto.RouteDto;
+import com.ssafy.wanderway.dto.SearchDto;
 import com.ssafy.wanderway.repository.MemberRepository;
 import com.ssafy.wanderway.repository.PlanRepository;
 import com.ssafy.wanderway.service.PlanService;
@@ -60,8 +63,14 @@ public class RouteController {
      * @return
      */
     @PostMapping("")
-    public ResponseEntity searchRoute(@RequestBody String keyword){
-        return null;
+    public ResponseEntity<List<RouteDto>> searchRoute(@RequestBody SearchDto searchDto){
+        //==임시 로그인유저 코드블럭
+        Member member = memberRepository.findById(3L).orElse((null));
+        if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
+        //==
+
+        List<RouteDto> searchResult = routeService.searchRoute(searchDto, member);
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
     }
 
     /** 여행루트 상세조회
@@ -69,8 +78,14 @@ public class RouteController {
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseEntity getDetailRoute(@PathVariable(name = "id") Long id){
-        return null;
+    public ResponseEntity<RouteDetailDto> getDetailRoute(@PathVariable(name = "id") Long id){
+        //==임시 로그인유저 코드블럭
+        Member member = memberRepository.findById(3L).orElse((null));
+        if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
+        //==
+
+        RouteDetailDto routeDetailDto = routeService.getDetailRouteById(id,member);
+        return new ResponseEntity<>(routeDetailDto, HttpStatus.OK);
     }
 
     /** 여행플랜 좋아요
@@ -92,7 +107,7 @@ public class RouteController {
      * @return
      */
     @DeleteMapping("/{id}/like")
-    public ResponseEntity dislikeRoute(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Void> dislikeRoute(@PathVariable(name = "id") Long id){
         //==임시 로그인유저 코드블럭
         Member member = memberRepository.findById(3L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");

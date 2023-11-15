@@ -16,6 +16,8 @@ import java.util.List;
  */
 @Getter @ToString @NoArgsConstructor
 public class RouteDto {
+
+    private Long route_id;
     private String location;
     private String period;
     private String thumbnail;
@@ -23,9 +25,11 @@ public class RouteDto {
     private String description;
     private List<String> tag;
     private boolean isLike;
+    private int like_cnt;
 
     @Builder
     public RouteDto(Plan plan, boolean isLike) {
+        this.route_id = plan.getId();
         this.location = plan.getLocation().getName();
         this.period = String.valueOf(plan.getRoutes().get(plan.getRoutes().size()-1).getDay());
         this.thumbnail = plan.getThumbnail();
@@ -35,5 +39,6 @@ public class RouteDto {
         this.tag = new ArrayList<>();
         for(TagToPlan ttp : plan.getTags()) tag.add(ttp.getTag().getText());
         this.isLike = isLike;
+        this.like_cnt = plan.getLikes().size();
     }
 }

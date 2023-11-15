@@ -10,4 +10,7 @@ import lombok.ToString;
 public class FindPlanDto {
     private int page;
     private String keyword;
+
+
+
 }

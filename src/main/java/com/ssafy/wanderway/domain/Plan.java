@@ -25,6 +25,9 @@ public class Plan {
     private String title;
     private String description;
     private String thumbnail;
+    
+    //총 일수
+    private Integer period;
 
     //공유여부 : true일때 공개
     @Column(name="is_public")
@@ -65,10 +68,14 @@ public class Plan {
             this.tags.add(tagToPlan);
         }
         // Map<Integer, List<LocationDto>> plan의 Integer = DAY값
+        this.period = 0;
+        
+        // 일수 자동셋팅
         for(Integer day : planFormDto.getPlan().keySet()){
             Route newRoute = new Route();
             newRoute.setPlanAndDayAndRd(this, day, planFormDto.getPlan().get(day));
             routes.add(newRoute);
+            this.period = Math.max(this.period, day);
         }
 
     }
