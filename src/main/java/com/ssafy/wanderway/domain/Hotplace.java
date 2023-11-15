@@ -1,7 +1,9 @@
 package com.ssafy.wanderway.domain;
 
+import com.ssafy.wanderway.dto.HotplaceDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
+@ToString
 @Table(name = "hotplace")
 public class Hotplace {
 
@@ -41,5 +44,17 @@ public class Hotplace {
     //좋아요목록
     @OneToMany(mappedBy = "reply",fetch = FetchType.LAZY)
     private List<Like> likes = new ArrayList<>();
+
+    public Hotplace(HotplaceDto dto){
+        this.title = dto.getTitle();
+        this.hit = dto.getHit();
+        this.content = dto.getContent();
+        //this.address = dto.getDetailAddress();
+
+        Attach attach = new Attach(this, dto);
+        this.attaches.add(attach);
+
+    }
+
 
 }
