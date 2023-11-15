@@ -37,6 +37,10 @@ public class Member {
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Reply> replies = new ArrayList<>();
 
+    //작성한 핫플레이스
+    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY)
+    private List<Hotplace> hotplaces = new ArrayList<>();
+
     @Builder
     public  Member (String email, String password, String nickname){
         this.email = email;
