@@ -11,6 +11,9 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.util.*;
 
+/** 여행계획을 저장하는 엔티티 : 태그목록, 좋아요목록, 그리고 루트목록(일별테이블)를 가진다.
+ * @author 최서현
+ */
 @Entity
 @Getter
 @NoArgsConstructor

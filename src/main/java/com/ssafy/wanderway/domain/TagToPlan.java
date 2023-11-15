@@ -5,6 +5,9 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
+/** 존재하는 태그들과 plan의 매핑정보를 저장하는 엔티티
+ * @author 최서현
+ */
 @Entity
 @Table(name = "tag_to_plan")
 @Getter @ToString

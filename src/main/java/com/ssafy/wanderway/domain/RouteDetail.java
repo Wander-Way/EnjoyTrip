@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/** 선택한 여행지 목록을 저장하는 엔티티 : route의 기본키를 외래키로 갖는다.
+ * @author 최서현
+ */
 @Entity
 @Getter
 @NoArgsConstructor

@@ -9,6 +9,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 핫플레이스 정보를 저장하는 엔티티 : 사진, 댓글목록, 좋아요목록을 가진다.
+ * @author 최서현
+ */
+
 @Entity
 @Getter
 @NoArgsConstructor

@@ -9,6 +9,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 회원에 대한 정보를 저장하는 엔티티 : 작성한 플랜, 좋아요와 댓글목록을 가진다
+ * @author 최서현
+ */
 @Entity
 @Getter
 @NoArgsConstructor

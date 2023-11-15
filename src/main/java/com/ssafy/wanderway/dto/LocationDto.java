@@ -9,8 +9,9 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 
-
-//저장할 관광플랜의 위치데이터 정의하는 DTO
+/** 관광플랜 위치데이터 정의하는 DTO
+ * @author 최서현
+ */
 @Getter @ToString
 @NoArgsConstructor
 public class LocationDto {

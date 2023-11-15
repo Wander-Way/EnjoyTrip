@@ -16,6 +16,9 @@ import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Route, 즉 사람들이 공유한 여행계획 데이터를 관리하는 서비스
+ * @author 최서현
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
