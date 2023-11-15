@@ -24,6 +24,9 @@ public class Hotplace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(mappedBy = "member_id", fetch = FetchType.LAZY)
+    private Member member;
+
     private String title; //장소이름 : 해동용궁사
     private Long hit; //조회수
     private String content; //상세정보
