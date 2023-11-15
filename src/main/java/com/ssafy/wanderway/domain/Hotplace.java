@@ -45,12 +45,13 @@ public class Hotplace {
         this.title = dto.getTitle();
         this.hit = dto.getHit();
         this.content = dto.getContent();
-        //this.address = dto.getDetailAddress();
 
-        Attach attach = new Attach(this, dto);
-        this.attaches.add(attach);
+        address = new Address(dto);
+
+
+        //this.address = dto.getDetailAddress();
+        //Attach attach = new Attach(this, dto);
+        //this.attaches.add(attach);
 
     }
-
-
 }

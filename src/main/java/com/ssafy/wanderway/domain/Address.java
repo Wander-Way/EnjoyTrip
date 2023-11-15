@@ -1,7 +1,9 @@
 package com.ssafy.wanderway.domain;
 
+import com.ssafy.wanderway.dto.HotplaceDto;
 import com.ssafy.wanderway.dto.LocationDto;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -40,4 +42,16 @@ public class Address {
         this.longitude = locationDto.getLongitude();
         this.detailAddress = locationDto.getDetailAddress();
     }
+
+    Address(HotplaceDto hotplaceDto){
+        this.name = hotplaceDto.getName();
+        this.city = hotplaceDto.getCity();
+        this.district = hotplaceDto.getDistrict();
+        this.town = hotplaceDto.getTown();
+        this.latitude = hotplaceDto.getLatitude();
+        this.longitude = hotplaceDto.getLongitude();
+        this.detailAddress = hotplaceDto.getDetailAddress();
+
+    }
+
 }
