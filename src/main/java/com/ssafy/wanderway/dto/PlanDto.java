@@ -9,6 +9,9 @@ import lombok.ToString;
 import java.util.List;
 import java.util.Map;
 
+/** 다른사람의 플랜 폼을 검색하여 플랜세우기에 사용할수 있도록 하는 DTO
+ * @author 최서현
+ */
 @Getter
 @ToString
 @NoArgsConstructor

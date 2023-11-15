@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/** 좋아요 정보를 저장하는 엔티티 : ENUM을 통해 REPLY와 PLAN중 어느곳에 대한 좋아요인지
+ * 구분하여 저장한다.
+ * @author 최서현
+ */
 @Entity
 @Getter
 @NoArgsConstructor

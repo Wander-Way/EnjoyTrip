@@ -5,6 +5,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
+/** 댓글을 저장하는 엔티티 : 핫플레이스 게시글에 달린 댓글을 저장하는 엔티티,
+ *  member와 hotplace의 기본키를 외래키로 가진다.
+ * @author 최서현
+ */
+
 @Entity
 @Getter
 @NoArgsConstructor

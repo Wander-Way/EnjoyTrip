@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/** 공개되어있는 Plan, 즉 Route에 대한 검색을 주관하는 컨트롤러
+ * @author 최서현
+ */
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/route")

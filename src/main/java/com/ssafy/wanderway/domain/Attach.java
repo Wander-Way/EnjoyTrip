@@ -5,6 +5,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/** 핫플레이스 사진정보를 저장하는 엔티티 : Hotplace의 기본키와 매핑
+ * @author 최서현
+ */
+
 @Entity
 @Getter
 @NoArgsConstructor

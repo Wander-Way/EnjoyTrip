@@ -17,6 +17,9 @@ import javax.transaction.Transactional;
 import javax.xml.stream.Location;
 import java.util.*;
 
+/** Plan, 즉 새로운 여행계획을 세울때 필요한 서비스
+ * @author 최서현
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor

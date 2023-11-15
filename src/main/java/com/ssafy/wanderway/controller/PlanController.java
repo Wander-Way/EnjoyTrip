@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/** 새로운 Plan 작성을 주관하는 Controller
+ * @author 최서현
+ */
+
 @RestController
 @RequiredArgsConstructor
 public class PlanController {

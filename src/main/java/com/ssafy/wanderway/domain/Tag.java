@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/** Tag정보를 유니크하게 저장하는 엔티티 : TagToPlan에서 사용정보를 연결한다.
+ * @author 최서현
+ */
 @Entity
 @Getter
 @NoArgsConstructor

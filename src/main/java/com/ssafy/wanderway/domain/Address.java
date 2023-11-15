@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/** Address엔티티 : Emeddable하게 선언하여 Plan과 Route, Hotplace 엔티티에서 사용 
+ * @author 최서현
+ */
+
 @Embeddable
 @Getter
 @NoArgsConstructor

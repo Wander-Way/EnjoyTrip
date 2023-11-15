@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/** plan과 routeDetail의 매핑정보를 저장하는 엔티티 : 각 plan을 일별로 나누어 매핑한다.
+ * @author 최서현
+ */
 @Entity
 @Getter
 @NoArgsConstructor
