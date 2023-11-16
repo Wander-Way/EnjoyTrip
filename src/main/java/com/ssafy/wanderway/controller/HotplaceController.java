@@ -2,6 +2,7 @@ package com.ssafy.wanderway.controller;
 
 
 import com.ssafy.wanderway.domain.Hotplace;
+import com.ssafy.wanderway.dto.HotPlaceCommentDto;
 import com.ssafy.wanderway.dto.HotplaceDto;
 import com.ssafy.wanderway.repository.HotplaceRepository;
 import com.ssafy.wanderway.service.HotplaceService;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.swagger.annotations.Api;
@@ -65,28 +67,36 @@ public class HotplaceController {
     }
 
 
-
-
     /**
      *  핫플레이스 게시글을 페이징 처리하여 조회합니다
-     * @param pageNumber 조회할 페이지
-     * @param itemsPerPage 페이지 당 조회할 게시글 수
+     * @param pageNumber 조회할 페이지 번호
+     * @param itemsPerPage 한 페이지당 조회할 게시글의 수
+     * @param place 조회할 장소
+     * @return 조회된 게시글의 정보
+     * @auther 류진호
      */
     @GetMapping("/board")
-    public List<Hotplace> getHotplacesPaged(
+    public List<HotplaceDto> getHotplacesPaged(
             @RequestParam(name = "pgno", defaultValue = "1") int pageNumber,
-            @RequestParam(name = "spp", defaultValue = "20") int itemsPerPage
+            @RequestParam(name = "spp", defaultValue = "20") int itemsPerPage,
+            @RequestParam(name = "place", defaultValue =  "대전") String place
     ) {
         Pageable pageable = PageRequest.of(pageNumber - 1, itemsPerPage);
-        return hotplaceService.getHotplacesPaged(pageable).getContent();
+        List <Hotplace> response = hotplaceService.getHotplacePagedWithPlace(pageable,place).getContent();
+        List <HotplaceDto> result = new ArrayList<>();
+        for(Hotplace hp : response){
+            HotplaceDto nhp = new HotplaceDto(hp);
+            result.add(nhp);
+        }
+        return result;
     }
 
 
-    /**     
+    /**
      *  핫플레이스 게시글을 상세조회합니다
      * @param articleno 조회할 게시글의 번호
      */
-    @GetMapping("/board/{articleno}")
+    @GetMapping("/board/{place}/{articleno}")
     public ResponseEntity<Hotplace> getArticleContent(@PathVariable Long articleno) {
         Hotplace articleContent = hotplaceService.getArticleById(articleno);
 
@@ -112,7 +122,7 @@ public class HotplaceController {
     }
 
     /**
-    *  핫플레이스 게시글을 수정합니다
+     *  핫플레이스 게시글을 수정합니다
      * @param hotplaceDto 수정할 게시글의 정보를 담은 DTO
      */
     @PutMapping("board")
@@ -123,10 +133,10 @@ public class HotplaceController {
         } catch (Exception e) {
             return exceptionHandling(e);
         }
-    }   
+    }
 
 
-    /** 
+    /**
      *  핫플레이스 게시글을 삭제합니다
      * @param articleno 삭제할 게시글의 번호
      * */
@@ -142,21 +152,22 @@ public class HotplaceController {
 
     /**
      * 댓글을 작성합니다
-     * 
+     *
      */
-    /*@PostMapping("board/{articleno}/comment")
-    public ResponseEntity<?> writeComment(@RequestBody HotplaceDto hotplaceDto){
+    @PostMapping("board/{articleno}/comment")
+    public ResponseEntity<?> writeComment(@PathVariable Long articleno, @RequestBody HotPlaceCommentDto hotplaceCommentDto ){
         try {
-            hotplaceService.writeComment(hotplaceDto);
+            hotplaceService.writeComment(articleno, hotplaceCommentDto);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
             return exceptionHandling(e);
         }
     }
-*/
+
 
     private ResponseEntity<String> exceptionHandling(Exception e) {
         e.printStackTrace();
         return new ResponseEntity<String>("Error : " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }

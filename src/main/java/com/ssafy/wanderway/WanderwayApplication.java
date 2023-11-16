@@ -9,5 +9,4 @@ public class WanderwayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WanderwayApplication.class, args);
 	}
-
 }

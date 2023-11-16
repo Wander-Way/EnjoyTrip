@@ -21,7 +21,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class HotPlaceCommentDto {
   private String nickname;
-  private Date createDate;
+  private Date createDate = new Date();
   private String content; 
   private String profileImg = "/imgSrc.jpg";
 

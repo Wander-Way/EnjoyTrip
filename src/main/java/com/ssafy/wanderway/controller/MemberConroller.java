@@ -75,7 +75,31 @@ public class MemberConroller {
   }
 
 
+  /**
+   *
+   * 내 여행 계획을 가져옵니다.
+   *
+   * @param myInfoRequestDto
+   * @return
+   *
+   */
+  /*
+  @PostMapping("/mypage/planlist")
+  @ApiOperation("내 여행 계획을 가져옵니다.")
+  public ResponseEntity<> mypagePlanList(@RequestBody MyInfoRequestDto myInfoRequestDto) {
+    System.out.println(myInfoRequestDto);
+    try {
 
+
+
+      //memberService.mypagePlanList(myInfoRequestDto);
+      return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+    }
+  }
+*/
 
 
 

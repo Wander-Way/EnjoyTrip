@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class HotplaceDto {
     private long hit;
     private String title;
 
-    private List<HotPlaceCommentDto> hotPlaceCommentDtoList;
+    private List<HotPlaceCommentDto> hotPlaceCommentDtoList = new ArrayList<>();
 
     public HotplaceDto(Hotplace hot){
         this.id = hot.getId();
