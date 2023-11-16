@@ -1,6 +1,7 @@
 package com.ssafy.wanderway.domain;
 
 
+import com.ssafy.wanderway.dto.MemberDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,4 +50,16 @@ public class Member {
         this.profile = "/default.img";
     }
 
+    public Member(MemberDto memberDto){
+        this.email = memberDto.getEmail();
+        this.password = memberDto.getPassword();
+        this.nickname = memberDto.getNickname();
+        this.profile = memberDto.getProfile();  
+    }
+
+    public void modifyMember(MemberDto memberDto){
+        this.password = memberDto.getPassword();
+        this.nickname = memberDto.getNickname();
+        this.profile = memberDto.getProfile();
+    }
 }
