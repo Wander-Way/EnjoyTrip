@@ -60,6 +60,8 @@ public class Hotplace {
         //this.address = dto.getDetailAddress();
         //Attach attach = new Attach(this, dto);
         //this.attaches.add(attach);
-
+    }
+    public void increaseHit(){
+        this.hit++;
     }
 }

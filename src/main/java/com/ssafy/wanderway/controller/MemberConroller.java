@@ -74,6 +74,11 @@ public class MemberConroller {
     }
   }
 
+
+
+
+
+
   @PostMapping("/signup2")
   public ResponseEntity<String> signup2(@RequestBody MemberDto memberDto) {
     System.out.println(memberDto);

@@ -140,6 +140,20 @@ public class HotplaceController {
         }
     }
 
+    /**
+     * 댓글을 작성합니다
+     * 
+     */
+    /*@PostMapping("board/{articleno}/comment")
+    public ResponseEntity<?> writeComment(@RequestBody HotplaceDto hotplaceDto){
+        try {
+            hotplaceService.writeComment(hotplaceDto);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
+*/
 
     private ResponseEntity<String> exceptionHandling(Exception e) {
         e.printStackTrace();

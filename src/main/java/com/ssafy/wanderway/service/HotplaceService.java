@@ -42,7 +42,10 @@ public class HotplaceService {
      * @return 조회된 게시글의 정보
      */
     public Hotplace getArticleById(long id) {
-        return hotplaceRepository.findById(id).orElse(null);
+        Hotplace hotplace = hotplaceRepository.findById(id).orElse(null);
+        if (hotplace != null)
+            hotplace.increaseHit();
+        return hotplace;
     }
 
 

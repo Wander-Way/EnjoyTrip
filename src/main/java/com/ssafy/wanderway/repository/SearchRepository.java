@@ -1,20 +1,17 @@
 package com.ssafy.wanderway.repository;
 
+
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.wanderway.domain.Plan;
 import com.ssafy.wanderway.domain.QPlan;
 import com.ssafy.wanderway.dto.SearchDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
