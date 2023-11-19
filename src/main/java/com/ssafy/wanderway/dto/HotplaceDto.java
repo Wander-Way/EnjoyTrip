@@ -4,16 +4,15 @@ import com.ssafy.wanderway.domain.Hotplace;
 import com.ssafy.wanderway.domain.Reply;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
-@Data
+@Getter @ToString
+@NoArgsConstructor
 @ApiModel(value   = "HotplaceDtp : 핫플레이스 게시글 정보")
 public class HotplaceDto {
     private Long id;
@@ -28,12 +27,14 @@ public class HotplaceDto {
     private String content;
     private long hit;
     private String title;
+    private Date date;//작성일
 
     private List<HotPlaceCommentDto> hotPlaceCommentDtoList = new ArrayList<>();
 
     public HotplaceDto(Hotplace hot){
         this.id = hot.getId();
-        this.authorName = hot.getMember().getNickname();
+        if (hot.getMember() != null)
+            this.authorName = hot.getMember().getNickname();
         this.city = hot.getAddress().getCity();
         this.detailAddress = hot.getAddress().getDetailAddress();
         this.district = hot.getAddress().getDistrict();
@@ -44,6 +45,7 @@ public class HotplaceDto {
         this.content = hot.getContent();
         this.hit = hot.getHit();
         this.title = hot.getTitle();
+        //this.date = hot.get
         for(Reply reply : hot.getReplies()){
             this.hotPlaceCommentDtoList.add(new HotPlaceCommentDto(reply));
         }

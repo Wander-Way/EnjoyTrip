@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/user")
 @Api("회원 관리 컨트롤러")
 public class MemberConroller {
@@ -22,21 +23,23 @@ public class MemberConroller {
   private MemberService memberService;
 
 
-  /*
-  //로그인 차후 구현
+  //임시 로그인
   @PostMapping("/login")
   @ApiOperation("로그인")
-  public ResponseEntity<MemberDto> login(@RequestBody MemberDto memberDto) {
-    System.out.println(memberDto);
+  public ResponseEntity<?> login(@RequestBody MyInfoRequestDto myinforequestdto) {
+    System.out.println(myinforequestdto);
     try {
-      MemberDto loginMember = memberService.login(memberDto);
-      return new ResponseEntity<MemberDto>(loginMember, HttpStatus.OK);
+      MemberDto loginMember = memberService.login(myinforequestdto);
+      if(loginMember == null)
+        return new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+      else
+        return new ResponseEntity<MemberDto>(loginMember, HttpStatus.OK);
     } catch (Exception e) {
       e.printStackTrace();
-      return new ResponseEntity<MemberDto>(HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<String>("ERROR",HttpStatus.BAD_REQUEST);
     }
   } 
-  */ 
+
 
   /**
    * 회원가입

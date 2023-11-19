@@ -24,6 +24,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/hotplace")
 @Api("핫플레이스 게시판 컨트롤러")
 public class HotplaceController {
@@ -97,11 +98,11 @@ public class HotplaceController {
      * @param articleno 조회할 게시글의 번호
      */
     @GetMapping("/board/{place}/{articleno}")
-    public ResponseEntity<Hotplace> getArticleContent(@PathVariable Long articleno) {
+    public ResponseEntity<HotplaceDto> getArticleContent(@PathVariable Long articleno) {
         Hotplace articleContent = hotplaceService.getArticleById(articleno);
 
         if (articleContent != null) {
-            return ResponseEntity.ok(articleContent);
+            return ResponseEntity.ok(new HotplaceDto(articleContent));
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -112,7 +113,7 @@ public class HotplaceController {
      */
     @PostMapping("board")
     public ResponseEntity<?> writeArticle(@RequestBody HotplaceDto hotplaceDto){
-        System.out.println("writeArticle in");
+        //System.out.println("writeArticle in");
         try {
             hotplaceService.writeArticle(hotplaceDto);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
@@ -158,7 +159,7 @@ public class HotplaceController {
     public ResponseEntity<?> writeComment(@PathVariable Long articleno, @RequestBody HotPlaceCommentDto hotplaceCommentDto ){
         try {
             hotplaceService.writeComment(articleno, hotplaceCommentDto);
-            return new ResponseEntity<Void>(HttpStatus.CREATED);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return exceptionHandling(e);
         }

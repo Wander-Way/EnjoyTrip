@@ -56,4 +56,12 @@ public class MemberService {
         }
         return myLikePlanList;
     }
+
+    public MemberDto login(MyInfoRequestDto myinforequestdto) {
+        Member member = memberRepository.findByEmail(myinforequestdto.getEmail());
+        if(member == null)
+            return null;
+        MemberDto memberDto = new MemberDto(member);
+        return memberDto;
+    }
 }
