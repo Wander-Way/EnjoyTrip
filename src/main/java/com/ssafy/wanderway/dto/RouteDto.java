@@ -41,4 +41,17 @@ public class RouteDto {
         this.isLike = isLike;
         this.like_cnt = plan.getLikes().size();
     }
+
+    public RouteDto(Plan plan) {
+        this.route_id = plan.getId();
+        this.location = plan.getLocation().getName();
+        this.period = String.valueOf(plan.getRoutes().get(plan.getRoutes().size()-1).getDay());
+        this.thumbnail = plan.getThumbnail();
+        this.title = plan.getTitle();
+        this.description = plan.getDescription();
+
+        this.tag = new ArrayList<>();
+        for(TagToPlan ttp : plan.getTags()) tag.add(ttp.getTag().getText());
+        this.like_cnt = plan.getLikes().size();
+    }
 }

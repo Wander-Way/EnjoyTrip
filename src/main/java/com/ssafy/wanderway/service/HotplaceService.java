@@ -1,6 +1,8 @@
 package com.ssafy.wanderway.service;
 
 import com.ssafy.wanderway.domain.Hotplace;
+import com.ssafy.wanderway.domain.Reply;
+import com.ssafy.wanderway.dto.HotPlaceCommentDto;
 import com.ssafy.wanderway.dto.HotplaceDto;
 import com.ssafy.wanderway.repository.HotplaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ *  * 핫플레이스 게시판의 비즈니스 로직을 정의한 서비스 클래스입니다
+ * 
+ * @date 2023.11.13. ~ 2023.11.23.
+ * @version 1.0
+ * @author 류진호
+ */
 @Service
+@Transactional
 public class HotplaceService {
 
     @Autowired
@@ -34,6 +45,11 @@ public class HotplaceService {
     public Page<Hotplace> getHotplacesPaged(Pageable pageable) {
         return hotplaceRepository.findAll(pageable);
     }
+    public Page<Hotplace> getHotplacePagedWithPlace(Pageable pageable, String place){
+        //System.out.println(place);
+        return hotplaceRepository.findByHotplaceWithCity(place, pageable);
+    }
+
 
     /**
      * 
@@ -77,4 +93,24 @@ public class HotplaceService {
     public void deleteArticle(long id){
         hotplaceRepository.deleteById(id);
     }
+
+
+    /**
+     *  * 핫플레이스 게시글에 댓글을 작성합니다
+     * @param articleno 댓글을 작성할 게시글의 번호
+     * @param hotplaceCommentDto 댓글을 위한 정보를 담고있는 DTO
+     */
+    public void writeComment(Long articleno, HotPlaceCommentDto hotplaceCommentDto) {
+        Hotplace hotplace = hotplaceRepository.findById(articleno).orElse(null);
+        if (hotplace != null) {
+            hotplace.addComment(hotplaceCommentDto);
+            /*System.out.println("@@@@@@@: "+ hotplace.getReplies().get(0).getContent());
+            System.out.println("@@@@@@@: "+ hotplace.getReplies().get(0).getMember().getNickname());
+            System.out.println("@@@@@@@: "+ hotplace.getReplies().get(0).getHotplace().getTitle());
+            */
+            //hotplaceRepository.save(hotplace);
+            //System.out.println("댓글 사이즈 : " + hotplace.getReplies().size());
+        }
+    }
+
 }

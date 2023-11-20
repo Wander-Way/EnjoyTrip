@@ -17,7 +17,8 @@ import java.util.Map;
  * author 류진호
  */
 
-@Getter @ToString
+@Getter
+@ToString
 @NoArgsConstructor
 public class HotPlaceCommentDto {
   private String nickname;
@@ -26,9 +27,17 @@ public class HotPlaceCommentDto {
   private String profileImg = "/imgSrc.jpg";
 
   public HotPlaceCommentDto(Reply reply){
-    this.nickname = reply.getMember().getNickname();
+
+    if (reply.getMember() != null)
+      this.nickname = reply.getMember().getNickname();
+    else
+      this.nickname = "탈퇴한 회원";
+
     this.createDate = reply.getDate();
     this.content = reply.getContent();
-    this.profileImg = reply.getMember().getProfile();
+    if (reply.getMember() != null)
+      this.profileImg = reply.getMember().getProfile();
+    else
+      this.profileImg = "/defaultimg.jpg";
   }
 }

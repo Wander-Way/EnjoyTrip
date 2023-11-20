@@ -1,5 +1,6 @@
 package com.ssafy.wanderway.domain;
 
+import com.ssafy.wanderway.dto.HotPlaceCommentDto;
 import com.ssafy.wanderway.dto.HotplaceDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-@ToString
+//@ToString
 @Table(name = "hotplace")
 public class Hotplace {
 
@@ -42,7 +43,7 @@ public class Hotplace {
     private List<Attach> attaches = new ArrayList<>();
 
     //댓글목록
-    @OneToMany(mappedBy="hotplace", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="hotplace", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
 
     //좋아요목록
@@ -55,13 +56,19 @@ public class Hotplace {
         this.content = dto.getContent();
 
         address = new Address(dto);
-
-
-        //this.address = dto.getDetailAddress();
-        //Attach attach = new Attach(this, dto);
-        //this.attaches.add(attach);
     }
     public void increaseHit(){
         this.hit++;
+    }
+
+
+
+    //댓글달기
+    public void addComment(HotPlaceCommentDto hotplaceCommentDto) {
+        //System.out.println(hotplaceCommentDto);
+        Reply r = new Reply();
+        r.setAll(this, member, hotplaceCommentDto);
+
+        this.replies.add(r);//member 수정
     }
 }

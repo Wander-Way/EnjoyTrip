@@ -1,7 +1,9 @@
 package com.ssafy.wanderway.domain;
 
+import com.ssafy.wanderway.dto.HotPlaceCommentDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,6 +17,7 @@ import java.util.Date;
 @Entity
 @Getter
 @NoArgsConstructor
+@ToString
 @Table(name = "reply")
 public class Reply {
 
@@ -38,5 +41,12 @@ public class Reply {
     //댓글 남긴 일자
     @Column(name = "created_date")
     private Date date;
+    
 
+    public void setAll(Hotplace hotplace, Member member, HotPlaceCommentDto hotplaceCommentDto) {
+        this.hotplace = hotplace;
+        this.member = member;
+        this.content = hotplaceCommentDto.getContent();
+        this.date = new Date();//hotplaceCommentDto.getCreateDate();
+    }
 }
