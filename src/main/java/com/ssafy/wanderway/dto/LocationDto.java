@@ -15,7 +15,7 @@ import javax.persistence.Column;
 @Getter @ToString
 @NoArgsConstructor
 public class LocationDto {
-
+    private Long tmapId;
     private String name; //장소명
 
     private String city; //시도
@@ -26,8 +26,14 @@ public class LocationDto {
     private Float latitude; //위도
     private Float longitude; //경도
 
+    private Float noorlat; //위도
+    private Float noorlon; //경도
+
     @Builder
     public LocationDto(RouteDetail routeDetail){
+        this.noorlat = routeDetail.getAddress().getNoorLat();
+        this.noorlon = routeDetail.getAddress().getNoorLon();
+        this.tmapId = routeDetail.getAddress().getTmapId();
         this.name = routeDetail.getAddress().getCity();
         this.city = routeDetail.getAddress().getCity();
         this.district = routeDetail.getAddress().getDistrict();
@@ -36,5 +42,4 @@ public class LocationDto {
         this.latitude = routeDetail.getAddress().getLatitude();
         this.longitude = routeDetail.getAddress().getLongitude();
     }
-
 }

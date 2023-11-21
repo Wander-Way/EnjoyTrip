@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlanRepository extends JpaRepository<Plan, Long> {
-    @Query("SELECT p FROM Plan p WHERE p.location.city LIKE %?1%")
+    @Query("SELECT p FROM Plan p WHERE p.location.name LIKE %?1%")
     Page<Plan> findByLocationCityContaining(String city, Pageable pageable);
 }

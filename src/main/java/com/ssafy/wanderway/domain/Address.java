@@ -20,7 +20,9 @@ import javax.persistence.Embeddable;
 public class Address {
 
     private String name; //장소명
-    
+
+    @Column(name="tmap_id") //티맵에서 사용하는 아이디
+    private Long tmapId;
     //주소
     private String city; //시도
     private String district; //구군
@@ -32,12 +34,20 @@ public class Address {
     @Column(name = "longitude", columnDefinition = "FLOAT")
     private Float longitude; //경도
 
+    //티맵용 좌표
+    @Column(name = "noor_Lat", columnDefinition = "FLOAT")
+    private Float noorLat; //위도
+    @Column(name = "noor_Lon", columnDefinition = "FLOAT")
+    private Float noorLon; //경도
+
     //상세주소
     @Column(name="detail_Address")
     private String detailAddress;
 
     @Builder
     Address(LocationDto locationDto){
+        this.noorLat = locationDto.getNoorlat();
+        this.noorLon = locationDto.getNoorlon();
         this.name = locationDto.getName();
         this.city = locationDto.getCity();
         this.district = locationDto.getDistrict();
@@ -45,6 +55,7 @@ public class Address {
         this.latitude = locationDto.getLatitude();
         this.longitude = locationDto.getLongitude();
         this.detailAddress = locationDto.getDetailAddress();
+        this.tmapId = locationDto.getTmapId();
     }
 
     Address(HotplaceDto hotplaceDto){

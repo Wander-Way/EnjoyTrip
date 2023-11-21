@@ -43,10 +43,10 @@ public class PlanService{
 
         // 2.plan 저장 (로직중 Route를 같이 생성하여 저장시킴)
         Plan newPlan = Plan.builder()
-                            .planFormDto(dto)
-                            .member(member)
-                            .savedTags(savedTags)
-                            .build();
+                .planFormDto(dto)
+                .member(member)
+                .savedTags(savedTags)
+                .build();
         planRepository.saveAndFlush(newPlan);
 
         return newPlan.getId();

@@ -2,6 +2,7 @@ package com.ssafy.wanderway.controller;
 
 import com.ssafy.wanderway.domain.Member;
 import com.ssafy.wanderway.dto.FindPlanDto;
+import com.ssafy.wanderway.dto.LocationDto;
 import com.ssafy.wanderway.dto.PlanDto;
 import com.ssafy.wanderway.dto.PlanFormDto;
 import com.ssafy.wanderway.repository.MemberRepository;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.stream.Location;
 import java.util.List;
 
 /** 새로운 Plan 작성을 주관하는 Controller
