@@ -34,7 +34,7 @@ public class LocationDto {
         this.noorlat = routeDetail.getAddress().getNoorLat();
         this.noorlon = routeDetail.getAddress().getNoorLon();
         this.tmapId = routeDetail.getAddress().getTmapId();
-        this.name = routeDetail.getAddress().getCity();
+        this.name = routeDetail.getAddress().getName();
         this.city = routeDetail.getAddress().getCity();
         this.district = routeDetail.getAddress().getDistrict();
         this.town = routeDetail.getAddress().getTown();
