@@ -17,6 +17,7 @@ import java.util.List;
 @Getter @ToString @NoArgsConstructor
 public class RouteDto {
 
+    private String nickname;
     private Long route_id;
     private String location;
     private String period;
@@ -29,6 +30,7 @@ public class RouteDto {
 
     @Builder
     public RouteDto(Plan plan, boolean isLike) {
+        this.nickname = plan.getMember().getNickname();
         this.route_id = plan.getId();
         this.location = plan.getLocation().getName();
         this.period = String.valueOf(plan.getRoutes().get(plan.getRoutes().size()-1).getDay());

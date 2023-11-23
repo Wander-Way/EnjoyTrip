@@ -54,7 +54,7 @@ public class RouteController {
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
 
-        List<RouteDto> routeDtos = routeService.getRouteRecent3(member);
+        List<RouteDto> routeDtos = routeService.getRouteRecent6(member);
         return new ResponseEntity<>(routeDtos, HttpStatus.OK);
     }
 

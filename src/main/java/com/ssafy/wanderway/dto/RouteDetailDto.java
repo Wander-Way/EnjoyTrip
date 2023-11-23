@@ -20,6 +20,7 @@ import static com.ssafy.wanderway.service.PlanService.routesToLocationDtos;
 @Getter @ToString
 public class RouteDetailDto {
 
+    private Long planId;
     private String nickName;
     private String profile;
 
@@ -34,6 +35,7 @@ public class RouteDetailDto {
 
     @Builder
     public RouteDetailDto(Plan plan, boolean is_like){
+        this.planId = plan.getId();
         this.nickName = plan.getMember().getNickname();
         this.profile = plan.getMember().getProfile();
 

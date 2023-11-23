@@ -32,8 +32,8 @@ public class RouteService {
     private final PlanRepository planRepository;
     private final SearchRepository searchRepository;
 
-    public List<RouteDto> getRouteRecent3(Member member) {
-        PageRequest pageRequest = PageRequest.of(0,3, Sort.by(Sort.Direction.DESC, "id"));
+    public List<RouteDto> getRouteRecent6(Member member) {
+        PageRequest pageRequest = PageRequest.of(0,6, Sort.by(Sort.Direction.DESC, "id"));
         Page<Plan> plans = planRepository.findAll(pageRequest);
         List<RouteDto> routeDtos = new ArrayList<>();
         for(Plan plan : plans) {
