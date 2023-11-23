@@ -7,6 +7,7 @@ import com.ssafy.wanderway.domain.RouteDetail;
 import com.ssafy.wanderway.dto.RouteDetailDto;
 import com.ssafy.wanderway.dto.RouteDto;
 import com.ssafy.wanderway.dto.SearchDto;
+import com.ssafy.wanderway.dto.SearchResultDto;
 import com.ssafy.wanderway.repository.MemberRepository;
 import com.ssafy.wanderway.repository.PlanRepository;
 import com.ssafy.wanderway.service.PlanService;
@@ -63,13 +64,13 @@ public class RouteController {
      * @return
      */
     @PostMapping("")
-    public ResponseEntity<List<RouteDto>> searchRoute(@RequestBody SearchDto searchDto){
+    public ResponseEntity<SearchResultDto> searchRoute(@RequestBody SearchDto searchDto){
         //==임시 로그인유저 코드블럭
         Member member = memberRepository.findById(3L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
 
-        List<RouteDto> searchResult = routeService.searchRoute(searchDto, member);
+        SearchResultDto searchResult = routeService.searchRoute(searchDto, member);
         return new ResponseEntity<>(searchResult, HttpStatus.OK);
     }
 

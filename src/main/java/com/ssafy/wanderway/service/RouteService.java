@@ -7,6 +7,7 @@ import com.ssafy.wanderway.domain.Route;
 import com.ssafy.wanderway.dto.RouteDetailDto;
 import com.ssafy.wanderway.dto.RouteDto;
 import com.ssafy.wanderway.dto.SearchDto;
+import com.ssafy.wanderway.dto.SearchResultDto;
 import com.ssafy.wanderway.repository.PlanRepository;
 import com.ssafy.wanderway.repository.SearchRepository;
 import lombok.RequiredArgsConstructor;
@@ -80,9 +81,9 @@ public class RouteService {
         return new RouteDetailDto(plan, isLike);
     }
 
-    public List<RouteDto> searchRoute(SearchDto searchDto, Member member) {
+    public SearchResultDto searchRoute(SearchDto searchDto, Member member) {
         //기간, 태그를 기준으로 plan을 동적쿼리
-        PageRequest pageRequest = PageRequest.of(searchDto.getPage()-1,3, Sort.by(Sort.Direction.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(searchDto.getPage()-1,6, Sort.by(Sort.Direction.DESC, "id"));
         Map<String, Object> result = searchRepository.searchPlan(searchDto,pageRequest);
         List<Plan> resultPlan = (List<Plan>) result.get("content");
         Long resultTotalCnt = (Long) result.get("total");
@@ -93,6 +94,8 @@ public class RouteService {
                     .anyMatch(like -> like.getMember().getId().equals(member.getId()));
             searchResult.add(RouteDto.builder().plan(plan).isLike(isLike).build());
         }
-        return searchResult;
+
+        return SearchResultDto.builder().totalCnt(resultTotalCnt).dtos(searchResult).build();
+        //return searchResult;
     }
 }

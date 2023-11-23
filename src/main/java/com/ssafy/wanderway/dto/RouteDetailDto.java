@@ -24,6 +24,7 @@ public class RouteDetailDto {
     private String nickName;
     private String profile;
 
+    private String title;
     private String location;
     private int period;
     private String thumbnail;
@@ -35,6 +36,7 @@ public class RouteDetailDto {
 
     @Builder
     public RouteDetailDto(Plan plan, boolean is_like){
+        this.title = plan.getTitle();
         this.planId = plan.getId();
         this.nickName = plan.getMember().getNickname();
         this.profile = plan.getMember().getProfile();
