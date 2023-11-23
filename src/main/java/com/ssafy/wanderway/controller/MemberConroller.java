@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RequestMapping("/user")
 @Api("회원 관리 컨트롤러")
 public class MemberConroller {
@@ -138,6 +138,21 @@ public class MemberConroller {
     try {
       List<RouteDto> result = memberService.mypageLikeList(myInfoRequestDto);
       return new ResponseEntity<List<RouteDto>>(result, HttpStatus.OK);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @PostMapping("/mypage/findpw")
+  public ResponseEntity<String> findPw(@RequestBody String email) {
+    System.out.println(email);
+    try {
+      MemberDto memberDto = memberService.findPw(email);
+      if (memberDto != null)
+        return new ResponseEntity<String>(memberDto.getPassword(), HttpStatus.OK);
+      else
+        return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
     } catch (Exception e) {
       e.printStackTrace();
       return new ResponseEntity<String>("Failed", HttpStatus.BAD_REQUEST);
