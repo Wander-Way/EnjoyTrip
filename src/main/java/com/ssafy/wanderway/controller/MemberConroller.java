@@ -145,10 +145,10 @@ public class MemberConroller {
   }
 
   @PostMapping("/mypage/findpw")
-  public ResponseEntity<String> findPw(@RequestBody String email) {
-    System.out.println(email);
+  public ResponseEntity<String> findPw(@RequestBody MyInfoRequestDto myInfoRequestDto) {
+    System.out.println(myInfoRequestDto.getEmail());
     try {
-      MemberDto memberDto = memberService.findPw(email);
+      MemberDto memberDto = memberService.findPw(myInfoRequestDto.getEmail());
       if (memberDto != null)
         return new ResponseEntity<String>(memberDto.getPassword(), HttpStatus.OK);
       else

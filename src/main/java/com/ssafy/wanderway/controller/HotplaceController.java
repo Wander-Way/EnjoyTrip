@@ -6,6 +6,7 @@ import com.ssafy.wanderway.dto.HotPlaceCommentDto;
 import com.ssafy.wanderway.dto.HotplaceDto;
 import com.ssafy.wanderway.repository.HotplaceRepository;
 import com.ssafy.wanderway.service.HotplaceService;
+import com.ssafy.wanderway.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +39,8 @@ public class HotplaceController {
     @Autowired
     private HotplaceRepository hotplaceRepository;
 
+    @Autowired
+    private MemberService memberService;
 
     /**
      *  핫플레이스 게시글의 전체 목록을 조회합니다

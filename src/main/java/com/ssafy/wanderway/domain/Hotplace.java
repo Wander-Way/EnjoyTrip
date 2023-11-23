@@ -61,7 +61,10 @@ public class Hotplace {
         if(this.hit == null){
             this.hit = new Long(0);
         }
-        this.hit++;
+        if (this.hit == null)
+            this.hit = 1L;
+        else
+            this.hit++;
     }
 
 
@@ -70,6 +73,8 @@ public class Hotplace {
     public void addComment(HotPlaceCommentDto hotplaceCommentDto) {
         //System.out.println(hotplaceCommentDto);
         Reply r = new Reply();
+        Member writer;
+
         r.setAll(this, member, hotplaceCommentDto);
 
         this.replies.add(r);//member 수정
