@@ -64,4 +64,12 @@ public class MemberService {
         MemberDto memberDto = new MemberDto(member);
         return memberDto;
     }
+
+    public MemberDto findPw(String email) {
+        Member member = memberRepository.findByEmail(email);
+        if(member == null)
+            return null;
+        MemberDto memberDto = new MemberDto(member);
+        return memberDto;
+    }
 }

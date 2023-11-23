@@ -58,6 +58,9 @@ public class Hotplace {
         address = new Address(dto);
     }
     public void increaseHit(){
+        if(this.hit == null){
+            this.hit = new Long(0);
+        }
         this.hit++;
     }
 

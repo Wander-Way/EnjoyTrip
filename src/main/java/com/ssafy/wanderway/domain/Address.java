@@ -24,8 +24,8 @@ public class Address {
     @Column(name="tmap_id") //티맵에서 사용하는 아이디
     private Long tmapId;
     //주소
-    private String city; //시도
-    private String district; //구군
+    private String city; //광역시/도
+    private String district; //시군구
     private String town; //읍면동
 
     //좌표

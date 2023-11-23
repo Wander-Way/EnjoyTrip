@@ -38,12 +38,23 @@ public class HotplaceDto {
         this.city = hot.getAddress().getCity();
         this.detailAddress = hot.getAddress().getDetailAddress();
         this.district = hot.getAddress().getDistrict();
-        this.latitude = hot.getAddress().getLatitude();
-        this.longitude = hot.getAddress().getLongitude();
+        if (hot.getAddress().getLatitude() != null)
+            this.latitude = hot.getAddress().getLatitude();
+        else
+            this.latitude = 0;
+        if (hot.getAddress().getLongitude() != null)
+            this.longitude = hot.getAddress().getLongitude();
+        else
+            this.longitude = 0;
+
         this.name = hot.getAddress().getName();
         this.town = hot.getAddress().getTown();
         this.content = hot.getContent();
-        this.hit = hot.getHit();
+        if (hot.getHit() != null)
+            this.hit = hot.getHit();
+        else
+            this.hit = 0;
+        //this.hit = hot.getHit();
         this.title = hot.getTitle();
         //this.date = hot.get
         for(Reply reply : hot.getReplies()){
