@@ -31,7 +31,7 @@ public class Plan {
 
     //공유여부 : true일때 공개
     @Column(name="is_public")
-    @ColumnDefault("false")
+    @ColumnDefault("true")
     private boolean isPublic;
 
     @Embedded
