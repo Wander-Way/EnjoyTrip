@@ -44,7 +44,7 @@ public class PlanController {
     @PostMapping("/plan")
     public ResponseEntity<Long> saveNewPlan(@RequestBody PlanFormDto planFormDto){
         //==임시 로그인유저 코드블럭
-        Member member = memberRepository.findById(3L).orElse((null));
+        Member member = memberRepository.findById(13L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
 

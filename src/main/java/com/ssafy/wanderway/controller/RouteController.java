@@ -51,7 +51,7 @@ public class RouteController {
     @GetMapping("")
     public ResponseEntity<List<RouteDto>> getRoute(){
         //==임시 로그인유저 코드블럭
-        Member member = memberRepository.findById(3L).orElse((null));
+        Member member = memberRepository.findById(13L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
 
@@ -66,7 +66,7 @@ public class RouteController {
     @PostMapping("")
     public ResponseEntity<SearchResultDto> searchRoute(@RequestBody SearchDto searchDto){
         //==임시 로그인유저 코드블럭
-        Member member = memberRepository.findById(3L).orElse((null));
+        Member member = memberRepository.findById(13L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
 
@@ -81,7 +81,7 @@ public class RouteController {
     @GetMapping("/{id}")
     public ResponseEntity<RouteDetailDto> getDetailRoute(@PathVariable(name = "id") Long id){
         //==임시 로그인유저 코드블럭
-        Member member = memberRepository.findById(3L).orElse((null));
+        Member member = memberRepository.findById(13L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
 
@@ -96,7 +96,7 @@ public class RouteController {
     @PostMapping("/{id}/like")
     public ResponseEntity<Void> likeRoute(@PathVariable(name = "id") Long id){
         //==임시 로그인유저 코드블럭
-        Member member = memberRepository.findById(3L).orElse((null));
+        Member member = memberRepository.findById(13L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
         routeService.likeRoute(id, member);
@@ -110,7 +110,7 @@ public class RouteController {
     @DeleteMapping("/{id}/like")
     public ResponseEntity<Void> dislikeRoute(@PathVariable(name = "id") Long id){
         //==임시 로그인유저 코드블럭
-        Member member = memberRepository.findById(3L).orElse((null));
+        Member member = memberRepository.findById(13L).orElse((null));
         if(member == null) throw new NullPointerException("존재하지 않는 Member입니다");
         //==
         routeService.cencelLikeRoute(id, member);
